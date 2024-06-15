@@ -3,7 +3,7 @@
 export default function HomePage() {
   return (
     <>
-      <h1 className="text-2xl">Bookstore</h1>
+      <h1 className="text-2xl text-center">Welcome to Ken&apos;s Bookstore</h1>
 
     </>
   );
