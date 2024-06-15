@@ -1,9 +1,9 @@
 
 
-const SingleBookPage = () => {
+const AllBooksPage = () => {
   return (
     <div>SingleBookPage</div>
   )
 }
 
-export default SingleBookPage
+export default AllBooksPage

@@ -1,7 +1,7 @@
-import Link from 'next/link'
 
 
-const BookCard = ({ book }) => {
+
+const BookCard = () => {
   return (
     <div>BookCard</div>
   )
