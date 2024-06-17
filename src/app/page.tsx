@@ -2,11 +2,13 @@ import Image from 'next/image';
 import { db } from '../server/db/index';
 
 
+export const dynamic = "force-dynamic";
+
 const mockURLs = [
-  "https://utfs.io/f/a4372bb7-5302-45b1-9edd-88a9e4605836-k1gfgc.jpg",
-  "https://utfs.io/f/ead0054e-bd71-4a94-9e1f-38676152586d-lunyee.jpg",
-  "https://utfs.io/f/a72407f5-bdcb-4f27-8bfe-7864511afba9-ift151.jpg",
-  "https://utfs.io/f/f0bfb124-f394-411d-84f4-38bd3debdb69-rfwkuu.jpg"
+  "https://utfs.io/f/fd231282-0ade-4487-b0a1-e73b7a1048d5-k1gfgc.png",
+  "https://utfs.io/f/de736688-afc9-48b5-951d-ae5540735209-rfwkuu.png",
+  "https://utfs.io/f/29419808-6364-4e9e-b50a-a382b2207cb0-ift151.png",
+  "https://utfs.io/f/53276cb2-70c9-4043-b5ae-62d8b20eabaa-lunyee.png"
 ];
 
 const mockImages = mockURLs.map((url, index) => ({
@@ -27,15 +29,18 @@ export default async function HomePage() {
   return (
     <>
       <h1 className="text-2xl text-center">Welcome to Ken&apos;s Bookstore</h1>
-      <div
-        className="
-          flex
-          flex-wrap
-        ">
+      <div className="flex flex-wrap justify-center">
         {mockImages.map((image) => (
-          <div key={image.id} className="m-4 object-contain">
-            <Image src={image.url} alt="book" className="" width={100} height={100}/>
-            </div>
+          <div key={image.id} className="m-4  overflow-hidden">
+            <Image
+              src={image.url}
+              alt="book"
+              className="object-fit h-[200px] mx-auto rounded-xl"
+              width={150}
+              height={150}
+              priority={true}
+            />
+          </div>
         ))}
       </div>
 
