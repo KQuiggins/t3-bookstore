@@ -40,6 +40,7 @@ export const books = createTable(
     id: serial("id").primaryKey(),
     title: varchar("title", { length: 256 }).notNull(),
     author: varchar("author", { length: 256 }).notNull(),
+    image_url: varchar("image_url", { length: 256 }).notNull(),
     publishedYear: integer("published_year"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
