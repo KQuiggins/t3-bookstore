@@ -8,7 +8,7 @@ export default async function HomePage() {
   const books = await db.query.books.findMany();
 
   // Log the data to the console (for debugging purposes)
-  console.log(books);
+  // console.log(books);
 
   return (
     <>
