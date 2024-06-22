@@ -1,3 +1,5 @@
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+
 const Navbar = () => {
   return (
     <>
@@ -5,7 +7,14 @@ const Navbar = () => {
         <div>Logo</div>
         <div className="flex items-center space-x-4">
           <div>Books</div>
-          <div>SignIn</div>
+          <div>
+            <SignedIn>
+              <UserButton />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton />
+            </SignedOut>
+          </div>
         </div>
       </nav>
     </>

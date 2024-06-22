@@ -5,7 +5,9 @@ export const dynamic = "force-dynamic";
 
 export default async function HomePage() {
   // Fetch the data from the database
-  const books = await db.query.books.findMany();
+  const books = await db.query.books.findMany({
+    orderBy: (model, {desc}) => desc(model.id)
+  });
 
   // Log the data to the console (for debugging purposes)
   // console.log(books);
