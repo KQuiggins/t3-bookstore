@@ -17,7 +17,7 @@ const Navbar = () => {
               <UploadButton
                 endpoint="imageUploader"
                 onClientUploadComplete={() => {
-                  router.reload();
+                  router.refresh();
                 }}
               />
               <UserButton />
