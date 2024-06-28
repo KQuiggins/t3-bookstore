@@ -42,6 +42,7 @@ export const books = createTable(
     author: varchar("author", { length: 256 }).notNull(),
     image_url: varchar("image_url", { length: 256 }).notNull(),
     publishedYear: integer("published_year"),
+    userId: varchar("userId", { length: 256 }).notNull(),
     createdAt: timestamp("created_at", { withTimezone: true })
       .default(sql`CURRENT_TIMESTAMP`)
       .notNull(),

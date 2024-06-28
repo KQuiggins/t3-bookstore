@@ -1,6 +1,11 @@
+'use client'
+
+import { useRouter } from "next/navigation";
 import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { UploadButton } from "~/utils/uploadthing";
 
 const Navbar = () => {
+  const router = useRouter();
   return (
     <>
       <nav className="flex w-full items-center justify-between border-b bg-slate-800 p-4 text-xl font-semibold">
@@ -9,6 +14,12 @@ const Navbar = () => {
           <div>Books</div>
           <div>
             <SignedIn>
+              <UploadButton
+                endpoint="imageUploader"
+                onClientUploadComplete={() => {
+                  router.reload();
+                }}
+              />
               <UserButton />
             </SignedIn>
             <SignedOut>
