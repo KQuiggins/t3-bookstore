@@ -11,7 +11,7 @@ const BookImages = async () => {
           <div key={book.id} className="m-4  overflow-hidden">
             <Image
               src={book.image_url}
-              alt="book"
+              alt={book.title}
               className="object-fit mx-auto h-[200px] rounded-xl"
               width={150}
               height={150}
