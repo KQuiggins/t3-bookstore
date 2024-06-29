@@ -1,12 +1,9 @@
 import Image from "next/image";
-import { db } from "../server/db/index";
+import { getBooks } from "~/server/queries";
 
 const BookImages = async () => {
 
-    // Fetch the data from the database
-  const books = await db.query.books.findMany({
-    orderBy: (model, {desc}) => desc(model.id)
-  });
+  const books = await getBooks();
   return (
     <>
         <div className="flex flex-wrap justify-center">
