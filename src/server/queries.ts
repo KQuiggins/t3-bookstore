@@ -15,3 +15,21 @@ export async function getBooks() {
 
   return books;
 }
+
+export async function getBook(id: number) {
+  // make sure user can access this book
+  const user = auth();
+  if (!user.userId) throw new Error("Unauthorized");
+
+  // Fetch the data from the database
+  const book = await db.query.books.findFirst({
+    where: (model, { eq }) => eq(model.id, id),
+  });
+
+  if (!book) throw new Error("Book not found");
+
+  if (book.userId !== user.userId) throw new Error("Unauthorized}");
+
+
+  return book;
+}

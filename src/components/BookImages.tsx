@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { getBooks } from "~/server/queries";
 
 const BookImages = async () => {
@@ -7,8 +8,9 @@ const BookImages = async () => {
   return (
     <>
         <div className="flex flex-wrap justify-center">
-        {[...books, ...books, ...books].map((book) => (
+        { ...books.map((book) => (
           <div key={book.id} className="m-4  overflow-hidden">
+            <Link href={`/bookImg/${book.id}`}>
             <Image
               src={book.image_url}
               alt={book.title}
@@ -18,6 +20,9 @@ const BookImages = async () => {
               priority={true}
             />
             <div>{book.title}</div>
+
+            </Link>
+
           </div>
         ))}
       </div>

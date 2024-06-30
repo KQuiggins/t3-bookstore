@@ -3,7 +3,6 @@ import "@uploadthing/react/styles.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navbar from "~/components/Navbar";
 import Footer from "~/components/Footer";
-
 import { GeistSans } from "geist/font/sans";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
@@ -17,24 +16,22 @@ export const metadata = {
 
 export default function RootLayout({
   children,
+  modal
 }: {
   children: React.ReactNode;
+  modal: React.ReactNode;
 }) {
   return (
     <ClerkProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
-      <NextSSRPlugin
-          /**
-           * The `extractRouterConfig` will extract **only** the route configs
-           * from the router to prevent additional information from being
-           * leaked to the client. The data passed to the client is the same
-           * as if you were to fetch `/api/uploadthing` directly.
-           */
-          routerConfig={extractRouterConfig(ourFileRouter)}
-        />
+        <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <body className="flex min-h-screen flex-col">
           <Navbar />
-          <main className="flex-grow">{children}</main>
+          <main className="flex-grow">
+            {children}
+            {modal}
+          </main>
+          <div id="modal-root" />
           <Footer />
         </body>
       </html>
