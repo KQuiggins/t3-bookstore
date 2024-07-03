@@ -16,13 +16,7 @@ export default async function PhotoModal({
     const bookImage = await getBook(bookIdAsNum);
   return <Modal>
     <div>
-        <Image
-          src={bookImage.image_url}
-          alt={bookImage.title}
-          className="object-fit mx-auto h-[200px] rounded-xl"
-          width={500}
-          height={500}
-        />
+        <img src={bookImage.image_url} alt="" className='w-96 h-96' />
 
     </div>
 
