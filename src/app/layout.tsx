@@ -7,6 +7,7 @@ import { GeistSans } from "geist/font/sans";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
+import { CSPostHogProvider } from "./_analytics/provider";
 
 export const metadata = {
   title: "Ken's Bookstore",
@@ -23,6 +24,7 @@ export default function RootLayout({
 }) {
   return (
     <ClerkProvider>
+      <CSPostHogProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
         <body className="flex min-h-screen flex-col">
@@ -35,6 +37,7 @@ export default function RootLayout({
           <Footer />
         </body>
       </html>
+      </CSPostHogProvider>
     </ClerkProvider>
   );
 }
