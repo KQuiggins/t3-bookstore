@@ -1,11 +1,13 @@
+import { FullPageImageView } from "~/components/FullPageBookView";
+
 export default function PhotoModal({
     params: { id: photoId },
   }: {
     params: { id: string };
   }) {
     return (
-      <div>
-        <img src={photoId} />
-      </div>
+      <div className="flex h-full min-h-0 w-full min-w-0 overflow-y-hidden">
+      <FullPageImageView photoId={photoId} />
+    </div>
     );
   }

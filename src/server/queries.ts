@@ -1,6 +1,10 @@
 import "server-only";
 import { db } from "./db";
 import { auth } from "@clerk/nextjs/server";
+import { and, eq } from "drizzle-orm";
+import { redirect } from "next/navigation";
+import analyticsServerClient from "./analytics";
+import { books } from "./db/schema";
 
 export async function getBooks() {
     // Get the user object from Clerk
@@ -32,4 +36,23 @@ export async function getBook(id: number) {
 
 
   return book;
+}
+
+export async function deleteBook(id: number) {
+  const user = auth();
+  if (!user.userId) throw new Error("Unauthorized");
+
+  await db
+    .delete(books)
+    .where(and(eq(books.id, id), eq(books.userId, user.userId)));
+
+  analyticsServerClient.capture({
+    distinctId: user.userId,
+    event: "delete book",
+    properties: {
+      bookId: id,
+    },
+  });
+
+  redirect("/");
 }
