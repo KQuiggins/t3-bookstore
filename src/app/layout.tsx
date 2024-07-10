@@ -8,6 +8,7 @@ import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
 import { extractRouterConfig } from "uploadthing/server";
 import { ourFileRouter } from "./api/uploadthing/core";
 import { CSPostHogProvider } from "./_analytics/provider";
+import { Toaster } from "~/components/ui/sonner";
 
 export const metadata = {
   title: "Ken's Bookstore",
@@ -27,13 +28,14 @@ export default function RootLayout({
       <CSPostHogProvider>
       <html lang="en" className={`${GeistSans.variable}`}>
         <NextSSRPlugin routerConfig={extractRouterConfig(ourFileRouter)} />
-        <body className="flex min-h-screen flex-col">
+        <body className="flex min-h-screen flex-col dark">
           <Navbar />
           <main className="flex-grow">
             {children}
             {modal}
           </main>
           <div id="modal-root" />
+          <Toaster />
           <Footer />
         </body>
       </html>
